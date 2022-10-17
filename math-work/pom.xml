@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.wangpai.matlab</groupId>
+        <artifactId>java-calls-matlab</artifactId>
+        <version>0.0</version>
+    </parent>
+
+    <artifactId>math-work</artifactId>
+
+    <dependencies>
+        <!-- 此部分的内容不能放置在父 POM 中 -->
+        <!--
+        这是因为 ${project.basedir} 的值会随着 POM 文件的位置而改变，
+        而父 POM 的 <dependencies> 会自动强制传递给子 POM，
+        而各个子 POM 的路径不会相同，从而导致 ${project.basedir} 的值会变化而带来 Bug
+        -->
+        <dependency>
+            <groupId>org.wangpai.matlab.native</groupId>
+            <artifactId>matlabutil</artifactId>
+            <version>0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../lib/MatlabUtil.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.matlab.native</groupId>
+            <artifactId>javabuilder</artifactId>
+            <version>0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../lib/javabuilder.jar</systemPath>
+        </dependency>
+        <!-- ******************************************************* -->
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
